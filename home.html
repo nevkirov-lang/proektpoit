@@ -1,0 +1,116 @@
+ <!DOCTYPE html>
+<html lang="en"> 
+<head>
+   <title>Nev's restaurant</title>
+</head>
+<style>
+body {
+background-color: black; /*Page background*/
+color: white; /*text color*/
+font-family: italic;
+}
+/* Menu images: small square */
+.menu-img {
+width: 800px;
+height: 600px;
+}
+/* Layout menu items in a row */
+{
+display: flex;
+gap: 20px;
+flex-wrap: wrap;
+}
+article {
+text-align: center;
+}
+img {
+
+width: 200px;
+height: 300px;
+}
+a {
+color: #ffcc00;
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<! -- Header Section-->
+<header>
+<h1>Nev's restaurant</h1>
+<div>
+</header>
+<!--Main Menu Section -->
+<main>
+<section id="menu"
+<h2>Menu</h2>
+<article>
+<img src="https://www.thespruceeats.com/thmb/27PnHj_m0JR8svH22Is9J80dks0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/sunny-side-up-eggs-4797347-5-34687e28214440fab5c87480deb21b31.jpg" alt="sunny side up eggs">
+<h3>Sunny side up eggs</h3>
+<p>Eggs with toasted bread. <i>$1.99</i></p>
+</article>
+
+
+<article>
+<img src="https://www.servingdumplings.com/wp-content/uploads/2023/01/the-best-spicy-spaghetti-bolognese-4-75b75f26.jpg" alt="spaghetti bolognese">
+<h3>Spaghetti bolognese </h3>
+<p>Creamy pasta with minced meat and tomato sauce. <i>$7.49</i></p>
+</article>
+
+
+<article>
+<img src="https://tse1.mm.bing.net/th/id/OIP.r0WeogFKr7B4z9T-MWybawHaFj?cb=12&w=780&h=585&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Inferno Wings">
+<h3>Inferno Wings</h3>
+<p>Spicy chicken wings. <i>$5.99</i></p>
+</article>
+</section>
+
+
+<!-- Order Form Section -->
+<section id="order-form">
+<h2>Place Your Order</h2>
+<form>
+<label for="eggs-qty">Sunny side up eggs:</label>
+<input type="number" id="eggs-qty" name="eggs-qty" min="0"><br><br>
+
+
+<label for="spaghetti-qty">Spaghetti bolognese:</label>
+<input type="number" id="spaghetti-qty" name="spaghetti-qty" min="0"><br><br>
+
+
+<label for="wings-qty">Inferno Wings:</label>
+<input type="number" id="wings-qty" name="wings-qty" min="0"><br><br>
+
+
+<p>Sides:</p>
+<label><input type="checkbox" name="sides" value="fries"> Fries</label><br>
+<label><input type="checkbox" name="sides" value="salad"> Salad</label><br>
+<label><input type="checkbox" name="sides" value="breadsticks"> Breadsticks</label><br><br>
+
+
+<p>Drink Size:</p>
+<label><input type="radio" name="drink-size" value="small"> Small</label><br>
+<label><input type="radio" name="drink-size" value="medium"> Medium</label><br>
+<label><input type="radio" name="drink-size" value="large"> Large</label><br><br>
+
+
+<label for="requests">Special Requests:</label><br>
+<textarea id="requests" name="requests" rows="4" cols="40"></textarea><br><br>
+
+
+<input type="submit" value="Go To Checkout">
+</form>
+</section>
+</main>
+
+
+<!-- Footer -->
+<footer>
+<p>Made with love by nevotu</p>
+</footer>
+</body>
+</html>
+
