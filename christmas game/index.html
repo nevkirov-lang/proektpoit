@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Фангай подаръците — Коледна мини-игра</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background music -->
+  <audio id="bgm" loop>
+    <!-- Project-local file (recommended): place MP3 in `christmas gme/sound/` -->
+    <source src="sound/Its_Snowtime_MP3.mp3" type="audio/mpeg">
+    <!-- Fallback to an absolute local path (useful for local testing) -->
+    <source src="file:///C:/Users/SchoolBG/Downloads/Its_Snowtime_MP3.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- UI -->
+  <div class="ui">
+    <h1>Фангай подаръците 🎁</h1>
+    <div class="info">
+      <div>Точки: <span id="score">0</span></div>
+      <div>Животи: <span id="lives">3</span></div>
+      <div>Ниво: <span id="level">1</span></div>
+    </div>
+
+    <div class="controls">
+      <button id="startBtn">Старт</button>
+      <button id="pauseBtn" disabled>Пауза</button>
+      <button id="resetBtn">Рестарт</button>
+    </div>
+
+    <p class="hint">Стрелки ← → или докосване/мишка за движение</p>
+  </div>
+
+  <div class="game-wrap">
+    <canvas id="gameCanvas" width="480" height="640"></canvas>
+  </div>
+
+  <div class="footer">
+    <small>Направена за училищен/учебен проект — можеш да модифицираш :)</small>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Early error overlay: catches parse/runtime errors in app.js and shows them on-screen
+    (function(){
+      function show(msg){
+        try{
+          var ov = document.getElementById('earlyErrorOverlay');
+          if(!ov){
+            ov = document.createElement('div');
+            ov.id = 'earlyErrorOverlay';
+            ov.style.position = 'fixed';
+            ov.style.left = '12px';
+            ov.style.top = '12px';
+            ov.style.right = '12px';
+            ov.style.padding = '12px';
+            ov.style.background = 'rgba(40,10,10,0.95)';
+            ov.style.color = '#fff';
+            ov.style.zIndex = 99999;
+            ov.style.fontFamily = 'system-ui,Segoe UI,Arial';
+            ov.style.fontSize = '13px';
+            ov.style.borderRadius = '8px';
+            ov.style.whiteSpace = 'pre-wrap';
+            ov.style.maxHeight = '60vh';
+            ov.style.overflow = 'auto';
+            document.body.appendChild(ov);
+          }
+          ov.textContent = msg;
+        }catch(e){ console.error('overlay failed', e); }
+      }
+      window.addEventListener('error', function(ev){
+        var m = (ev && ev.message) ? ev.message : String(ev);
+        var s = (ev && ev.error && ev.error.stack) ? '\n' + ev.error.stack : '';
+        show('Error: ' + m + s);
+        console.error(ev.error || ev);
+      });
+      window.addEventListener('unhandledrejection', function(ev){
+        show('Unhandled rejection: ' + (ev && ev.reason ? ev.reason : String(ev)));
+        console.error('unhandledrejection', ev);
+      });
+    })();
+  </script>
+  <script>
+    const music = document.getElementById("bgm");
+    music.volume = 0.42;
+    // Ensure sources are loaded; some browsers require load before play()
+    music.load();
+
+    // Start music on **any first user interaction**
+    function startMusic() {
+      music.play().catch(() => console.log("Music needs user interaction"));
+      // Remove listeners so we don’t call it again
+      window.removeEventListener('click', startMusic);
+      window.removeEventListener('keydown', startMusic);
+      window.removeEventListener('touchstart', startMusic);
+    }
+
+    // Listen for any click, key, or touch
+    window.addEventListener('click', startMusic);
+    window.addEventListener('keydown', startMusic);
+    window.addEventListener('touchstart', startMusic);
+
+    // Also ensure music starts when player presses Start (more reliable)
+    const startBtn = document.getElementById('startBtn');
+    if(startBtn) startBtn.addEventListener('click', startMusic);
+
+    // Optional: pause/resume button
+    const pauseBtn = document.getElementById("pauseBtn");
+    pauseBtn.addEventListener('click', () => {
+      if (!music.paused) music.pause();
+      else music.play();
+    });
+  </script>
+</body>
+</html>
